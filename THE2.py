@@ -85,12 +85,11 @@ indexs.pop(x_min_index)
 
 #equation of the line
 m=(x_max[1]-x_min[1])/(x_max[0]-x_min[0])
-#if coor_list[indexs[0]][1]-coor_list[x_max_index][1]>m(coor_list[indexs[0]][0]-coor_list[x_max_index][0]) and coor_list[indexs[1]][1]-coor_list[x_max_index][1]>m(coor_list[indexs[1]][0]-coor_list[x_max_index][0]):
+bottom_area=(abs(coor_list[x_max_index][1])+abs(coor_list[x_min_index][1]))*(coor_list[x_max_index][0]-coor_list[x_min_index][0])/2
 
 
 #both higher than line
 if coor_list[indexs[0]][1]-coor_list[x_max_index][1]>m*(coor_list[indexs[0]][0]-coor_list[x_max_index][0]) and coor_list[indexs[1]][1]-coor_list[x_max_index][1]>m*(coor_list[indexs[1]][0]-coor_list[x_max_index][0]):
-    bottom_area=(abs(coor_list[x_max_index][1])+abs(coor_list[x_min_index][1]))*(coor_list[x_max_index][0]-coor_list[x_min_index][0])/2
     if abs(x_max_index-x_min_index)!=1 and abs(x_max_index-x_min_index)!=3:
         if coor_list[indexs[0]][1]<coor_list[indexs[1]][1]:
             bottom_point=coor_list[indexs[0]]
@@ -102,7 +101,6 @@ if coor_list[indexs[0]][1]-coor_list[x_max_index][1]>m*(coor_list[indexs[0]][0]-
 
 #both lower than line
 elif coor_list[indexs[0]][1]-coor_list[x_max_index][1]<m*(coor_list[indexs[0]][0]-coor_list[x_max_index][0]) and coor_list[indexs[1]][1]-coor_list[x_max_index][1]<m*(coor_list[indexs[1]][0]-coor_list[x_max_index][0]):
-    bottom_area=(abs(coor_list[x_max_index][1])+abs(coor_list[x_min_index][1]))*(coor_list[x_max_index][0]-coor_list[x_min_index][0])/2
     if abs(x_max_index-x_min_index)!=1 and abs(x_max_index-x_min_index)!=3:
         if coor_list[indexs[0]][1]>coor_list[indexs[1]][1]:
             bottom_point=coor_list[indexs[0]]
@@ -115,7 +113,13 @@ elif coor_list[indexs[0]][1]-coor_list[x_max_index][1]<m*(coor_list[indexs[0]][0
 
 
 else:
-    pass
+    if coor_list[indexs[0]][1]>coor_list[indexs[1]][1]:
+        bottom_point=coor_list[indexs[0]]
+    else:
+        bottom_point=coor_list[indexs[1]]
+    triangle=abs(((coor_list[x_max_index][0]*coor_list[x_min_index][1])+(coor_list[x_min_index][0]*bottom_point[1])+(bottom_point[0]*coor_list[x_max_index][1]))-((coor_list[x_max_index][1]*coor_list[x_min_index][0])+(coor_list[x_min_index][1]*bottom_point[0])+(bottom_point[1]*coor_list[x_max_index][0])))*2
+    bottom_area-=triangle
+    print(bottom_area-area_quad)
 
 
 

@@ -82,7 +82,7 @@ if abs(coor_list[indexs[0]][1])-abs(coor_list[x_max_index][1])>m*(coor_list[inde
 #both lower than line #works
 elif abs(coor_list[indexs[0]][1])-abs(coor_list[x_max_index][1])<m*(coor_list[indexs[0]][0]-coor_list[x_max_index][0]) and abs(coor_list[indexs[1]][1])-abs(coor_list[x_max_index][1])<m*(coor_list[indexs[1]][0]-coor_list[x_max_index][0]):
     if abs(x_max_index-x_min_index)!=1 and abs(x_max_index-x_min_index)!=3:
-        if coor_list[indexs[0]][1]>coor_list[indexs[1]][1]:
+        if abs(coor_list[indexs[0]][1])>abs(coor_list[indexs[1]][1]):
             bottom_point=coor_list[indexs[0]]
         else:
             bottom_point=coor_list[indexs[1]]
@@ -91,7 +91,7 @@ elif abs(coor_list[indexs[0]][1])-abs(coor_list[x_max_index][1])<m*(coor_list[in
     print(bottom_area-area_quad)
     
 else:
-    if abs(coor_list[indexs[0]][1])>abs(coor_list[indexs[1]][1]):
+    if m*(coor_list[indexs[1]][0]-coor_list[x_max_index][0])-(abs(coor_list[indexs[1]][1])-abs(coor_list[x_max_index][1]))>m*(coor_list[indexs[0]][0]-coor_list[x_max_index][0])-(abs(coor_list[indexs[0]][1])-abs(coor_list[x_max_index][1])):
         bottom_point=coor_list[indexs[1]]
     else:
         bottom_point=coor_list[indexs[0]]

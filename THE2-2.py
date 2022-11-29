@@ -16,11 +16,11 @@ if coor_list[2][0]<=coor_list[0][0] and coor_list[2][0]<=coor_list[1][0] and coo
 if coor_list[3][0]<=coor_list[0][0] and coor_list[3][0]<=coor_list[1][0] and coor_list[3][0]<=coor_list[2][0]:
     min_list.append(3)
 
-if len(min_list)==2:
-    if coor_list[min_list[0]][1]>coor_list[min_list[1]][1]:
-        x_min_index=min_list[1]
+if len(min_list)==2 and abs(coor_list[min_list[0]][1])>abs(coor_list[min_list[1]][1]):
+    x_min_index=min_list[1]
 else:
     x_min_index=min_list[0]
+
 #detect the max x
 if coor_list[0][0]>=coor_list[1][0] and coor_list[0][0]>=coor_list[2][0] and coor_list[0][0]>=coor_list[3][0]:
     max_list.append(0)
@@ -31,20 +31,17 @@ if coor_list[2][0]>=coor_list[0][0] and coor_list[2][0]>=coor_list[1][0] and coo
 if coor_list[3][0]>=coor_list[0][0] and coor_list[3][0]>=coor_list[1][0] and coor_list[3][0]>=coor_list[2][0]:
     max_list.append(3)
 
-if len(max_list)==2:
-    if coor_list[max_list[0]][1]>coor_list[max_list[1]][1]:
-        x_max_index=max_list[1]
+if len(max_list)==2 and abs(coor_list[max_list[0]][1])>abs(coor_list[max_list[1]][1]):
+    x_max_index=max_list[1]
 else:
     x_max_index=max_list[0]
 
 indexs=[0,1,2,3]
 indexs.remove(x_max_index) 
 indexs.remove(x_min_index)
-
 #equation of the line
-m=(abs(coor_list[x_max_index][1])-abs(coor_list[x_min_index][1]))/(coor_list[x_max_index][1]-coor_list[x_min_index][0])
+m=(abs(coor_list[x_max_index][1])-abs(coor_list[x_min_index][1]))/(coor_list[x_max_index][0]-coor_list[x_min_index][0])
 bottom_area=(abs(coor_list[x_max_index][1])+abs(coor_list[x_min_index][1]))*abs(coor_list[x_max_index][0]-coor_list[x_min_index][0])/2
-
 #both higher than line
 if abs(coor_list[indexs[0]][1])-abs(coor_list[x_max_index][1])>m*(coor_list[indexs[0]][0]-coor_list[x_max_index][0]) and abs(coor_list[indexs[1]][1])-abs(coor_list[x_max_index][1])>m*(coor_list[indexs[1]][0]-coor_list[x_max_index][0]):
     if abs(x_max_index-x_min_index)!=1 and abs(x_max_index-x_min_index)!=3:
@@ -55,7 +52,7 @@ if abs(coor_list[indexs[0]][1])-abs(coor_list[x_max_index][1])>m*(coor_list[inde
             bottom_point=coor_list[indexs[1]]
         triangle=abs(((coor_list[x_max_index][0]*coor_list[x_min_index][1])+(coor_list[x_min_index][0]*bottom_point[1])+(bottom_point[0]*coor_list[x_max_index][1]))-((coor_list[x_max_index][1]*coor_list[x_min_index][0])+(coor_list[x_min_index][1]*bottom_point[0])+(bottom_point[1]*coor_list[x_max_index][0])))/2
         bottom_area+=triangle
-    print(bottom_area)    
+    print("%.2f"%bottom_area)    
 
 #both lower than line #works
 elif abs(coor_list[indexs[0]][1])-abs(coor_list[x_max_index][1])<m*(coor_list[indexs[0]][0]-coor_list[x_max_index][0]) and abs(coor_list[indexs[1]][1])-abs(coor_list[x_max_index][1])<m*(coor_list[indexs[1]][0]-coor_list[x_max_index][0]):
@@ -66,7 +63,7 @@ elif abs(coor_list[indexs[0]][1])-abs(coor_list[x_max_index][1])<m*(coor_list[in
             bottom_point=coor_list[indexs[1]]
         triangle=abs(((coor_list[x_max_index][0]*coor_list[x_min_index][1])+(coor_list[x_min_index][0]*bottom_point[1])+(bottom_point[0]*coor_list[x_max_index][1]))-((coor_list[x_max_index][1]*coor_list[x_min_index][0])+(coor_list[x_min_index][1]*bottom_point[0])+(bottom_point[1]*coor_list[x_max_index][0])))/2
         bottom_area-=triangle
-    print(bottom_area-area_quad)
+    print("%.2f"%(bottom_area-area_quad))
     
 else:
     if m*(coor_list[indexs[1]][0]-coor_list[x_max_index][0])-(abs(coor_list[indexs[1]][1])-abs(coor_list[x_max_index][1]))>m*(coor_list[indexs[0]][0]-coor_list[x_max_index][0])-(abs(coor_list[indexs[0]][1])-abs(coor_list[x_max_index][1])):
@@ -75,4 +72,4 @@ else:
         bottom_point=coor_list[indexs[0]]
     triangle=abs(((coor_list[x_max_index][0]*coor_list[x_min_index][1])+(coor_list[x_min_index][0]*bottom_point[1])+(bottom_point[0]*coor_list[x_max_index][1]))-((coor_list[x_max_index][1]*coor_list[x_min_index][0])+(coor_list[x_min_index][1]*bottom_point[0])+(bottom_point[1]*coor_list[x_max_index][0])))/2
     bottom_area-=triangle
-    print(bottom_area)
+    print("%.2f"%bottom_area)

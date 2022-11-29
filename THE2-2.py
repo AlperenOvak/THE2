@@ -71,5 +71,5 @@ else:
     else:
         bottom_point=coor_list[indexs[0]]
     triangle=abs(((coor_list[x_max_index][0]*coor_list[x_min_index][1])+(coor_list[x_min_index][0]*bottom_point[1])+(bottom_point[0]*coor_list[x_max_index][1]))-((coor_list[x_max_index][1]*coor_list[x_min_index][0])+(coor_list[x_min_index][1]*bottom_point[0])+(bottom_point[1]*coor_list[x_max_index][0])))/2
-    bottom_area-=triangle
+    bottom_area-=triangle#bcvbcvb
     print("%.2f"%bottom_area)

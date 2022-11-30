@@ -45,7 +45,8 @@ bottom_area=(abs(coor_list[x_max_index][1])+abs(coor_list[x_min_index][1]))*abs(
 #both higher than line
 if abs(coor_list[indexs[0]][1])-abs(coor_list[x_max_index][1])>m*(coor_list[indexs[0]][0]-coor_list[x_max_index][0]) and abs(coor_list[indexs[1]][1])-abs(coor_list[x_max_index][1])>m*(coor_list[indexs[1]][0]-coor_list[x_max_index][0]):
     if abs(x_max_index-x_min_index)!=1 and abs(x_max_index-x_min_index)!=3:
-        if abs(coor_list[indexs[0]][1])<abs(coor_list[indexs[1]][1]):
+        #if abs(coor_list[indexs[0]][1])<abs(coor_list[indexs[1]][1]):
+        if abs(abs(coor_list[indexs[0]][1])-abs(coor_list[x_max_index][1])-(m*(coor_list[indexs[0]][0]-coor_list[x_max_index][0])))/(1+m**2)**(1/2)<abs(abs(coor_list[indexs[1]][1])-abs(coor_list[x_max_index][1])-(m*(coor_list[indexs[1]][0]-coor_list[x_max_index][0])))/(1+m**2)**(1/2):
             bottom_point=coor_list[indexs[0]]
         else:
             

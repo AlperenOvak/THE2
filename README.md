@@ -22,3 +22,8 @@ This is second "take home exam" (THE) in 2022-2023 	academic year.
 – Use repetitive constructs (for, while or list comprehension).
 
 *Therefore, we could only use if statetment :/
+
+
+# Final result after gradeing:
+
+This code got full score (100%)
